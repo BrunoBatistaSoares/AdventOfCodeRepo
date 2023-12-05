@@ -1,0 +1,5 @@
+<body>
+    <button id="button" (click)="processInput()">gerarResultado</button>
+    <h1>{{ result }}</h1>
+    <textarea [value]="input" (input)="onValueChange($event)" name="input" id="input" cols="300" rows="300"></textarea>
+</body>
