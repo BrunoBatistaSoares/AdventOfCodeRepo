@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { D2P2 } from '../Solutions/D2P2';
+import { D9P2 } from '../Solutions/D9P2';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,7 @@ export class HomeComponent {
   result: string = '';
 
   processInput() {
-    this.result = D2P2(this.input).toString();
+    this.result = D9P2(this.input).toString();
   }
 
   onValueChange($event: Event) {
