@@ -3,6 +3,8 @@ var GLOBALCOUNTERED = 0
 var map = new Map
 
 export function D12P1(input: string) {
+    console.log(`start`);
+
     let result = 0;
     let separateLines = input.split(/\r?\n/g);
 
@@ -10,16 +12,16 @@ export function D12P1(input: string) {
         // console.log(line);
 
         let tempMap = line.split(' ')[0]
-        tempMap = tempMap.concat('?', tempMap, '?', tempMap, '?', tempMap, '?', tempMap)
+        //tempMap = tempMap.concat('?', tempMap, '?', tempMap, '?', tempMap, '?', tempMap)
         let map = Array.from(tempMap)
         let tempCoils = line.split(' ')[1]
-        tempCoils = tempCoils.concat(',', tempCoils, ',', tempCoils, ',', tempCoils, ',', tempCoils)
+        //tempCoils = tempCoils.concat(',', tempCoils, ',', tempCoils, ',', tempCoils, ',', tempCoils)
         let coils = tempCoils.split(',')
         preCookMap(map, coils)
         // console.log(map);
         // console.log(coils);
-        // console.log(JSON.stringify(map));
-        // console.log(JSON.stringify(coils));
+        console.log(JSON.stringify(map));
+        console.log(JSON.stringify(coils));
         let aux = possibilities(map, coils, 0);
         console.log(aux);
 
@@ -29,12 +31,10 @@ export function D12P1(input: string) {
 }
 
 function possibilities(map: string[], coils: string[], index: number): number {
-    GLOBALCOUNTER++
-    console.log(GLOBALCOUNTER);
-    if (GLOBALCOUNTER % 1000 === 0) {
-        console
-    }
+
     if (index === map.length) {
+        GLOBALCOUNTER++
+        console.log(GLOBALCOUNTER);
         return isItPossible(structuredClone(map), coils)
     }
     else {
@@ -66,7 +66,8 @@ function possibilities(map: string[], coils: string[], index: number): number {
             }
             else if (preCheck(map, coils, index)) {
                 // console.log(index);
-                return possibilities(structuredClone(map), coils, index)
+                let possibilitiesAfterDot = possibilities(structuredClone(map), coils, index)
+                return possibilitiesAfterDot
             }
             else {
                 //console.log('nao bateu ');

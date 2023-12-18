@@ -1,9 +1,9 @@
 /// <reference lib="webworker" />
 
-import { D12P1 } from "./Solutions/D12P1";
+import { D13P2 } from "./Solutions/D13P2";
 
 function processData(data: string) {
-  return D12P1(data).toString();
+  return D13P2(data).toString();
 }
 
 addEventListener('message', ({ data }) => {
