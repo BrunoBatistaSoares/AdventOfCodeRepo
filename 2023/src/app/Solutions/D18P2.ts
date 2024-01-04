@@ -1,12 +1,23 @@
-export function D18P1(input: string) {
+export function D18P2(input: string) {
     let result = 0;
     let separateInputs = input.split(/\n/g);
 
-    let coordinates: { dir: string, length: number, color: string }[] = []
+    let coordinates: { dir: string, length: number }[] = []
     separateInputs.forEach(element => {
         let aux = element.split(/\ /g)
         aux[2] = aux[2].replace(/[\(\)]/g, '')
-        coordinates.push({ dir: aux[0], length: parseInt(aux[1]), color: aux[2] })
+        aux[2] = aux[2].replace('#', '')
+
+        let dir = ''
+        switch (parseInt(aux[2][aux[2].length - 1])) {
+            case 0: dir = 'R'; break;
+            case 1: dir = 'D'; break;
+            case 2: dir = 'L'; break;
+            case 3: dir = 'U'; break;
+        }
+
+        let length = parseInt(aux[2].slice(0, 5), 16)
+        coordinates.push({ dir: dir, length: length })
 
     });
 
@@ -21,8 +32,6 @@ export function D18P1(input: string) {
         let modifier = -1
         if (isClockWise(previousDir, currentDir)) { modifier++ }
         if (isClockWise(currentDir, nextDir)) { modifier++ }
-
-
 
         if (index === 0) {
             edges.push({ x: 0, y: 0 })
@@ -50,9 +59,6 @@ export function D18P1(input: string) {
 
     result = Math.abs(result)
     result = result * 0.5
-
-    console.log(edges);
-
 
     return result
 }
